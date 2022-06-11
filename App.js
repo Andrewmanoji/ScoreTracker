@@ -29,7 +29,7 @@ const givesFalse1=()=>{
       checked={correct} 
       onPress={givesCorrect}/>
         <CheckBox title="False"
-      checked={false} 
+      checked={false1} 
       onPress={givesFalse1}/>
 
       <Text>Our new app to present the speedometer of quiz</Text>
