@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { CheckBox, Input } from "rect-native-elements";
+import { ListViewComponent, StyleSheet, Text, View } from "react-native";
+import { CheckBox, Input } from "react-native-elements";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -27,3 +27,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
