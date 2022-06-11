@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ScoreTracker",
+    "slug": "ScoreTracker",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ScoreTracker"
+}
