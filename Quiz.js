@@ -4,6 +4,7 @@ import { COLORS, SIZES} from './constants';
 import data from './QuizData';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 const Quiz = (props) => {
 
   const allQuestions = data;

@@ -19,10 +19,12 @@ const Home = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingTop: 300,
+  // backgroundColor:"#252C4A"
+
   },
   text: {
     fontSize: 40,
+    paddingTop:300,
   },
 });
 export default Home;
