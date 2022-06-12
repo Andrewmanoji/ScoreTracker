@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, StatusBar , Image, TouchableOpacity, Modal, Animated} from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, StatusBar , Image, TouchableOpacity, Modal, Animated,TextInput} from "react-native";
 import { COLORS, SIZES} from './constants';
 import data from './QuizData';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,7 +19,7 @@ const Quiz = (props) => {
   const renderQuestion = () =>{
         return(
           <View style={{
-            marginVertical: 40,
+            marginVertical: 20,
           }}>
           {/* Question counter */}
           <View style={{            
@@ -171,6 +171,7 @@ const Quiz = (props) => {
       </View>
     )
   }
+  const [meterValue, setMeterValue] = useState(0);
 
   return (
       <SafeAreaView style={{flex:1}}>
@@ -182,7 +183,49 @@ const Quiz = (props) => {
          backgroundColor: COLORS.background,
          position: 'relative'
        }}>
-        <RNSpeedometer></RNSpeedometer>
+        <RNSpeedometer
+          // value={meterValue}
+          value={score}
+
+          //value for Speedometer
+          size={50}
+          //Size of Speedometer
+          minValue={0}
+          //Min value for Speedometer
+          maxValue={10}
+          //Max value for Speedometer
+          allowedDecimals={0}
+          //Decimals value allowed or not
+          labels={[
+            {
+              name: 'Low Risk',
+              labelColor: '#ff2900',
+              activeBarColor: '#ff2900',
+            },
+            {
+              name: 'Medium Risk',
+              labelColor: '#f4ab44',
+              activeBarColor: '#f4ab44',
+            },
+            {
+              name: 'High Risk',
+              labelColor: '#00ff6b',
+              activeBarColor: '#00ff6b',
+            },
+          ]}
+          //Labels for the different steps of Speedometer
+        />
+        <View style={{marginTop: 70, padding: 20}}>
+          {/* <Text style={{fontSize: 20}}>
+            Enter the value for the speedometer graph{' '}
+            between 0 to 100
+          </Text> */}
+          <TextInput
+            placeholder="Enter Speedometer Value"
+            style={styles.textInput}
+            onChangeText={(value) => setMeterValue(value)}
+          />
+        </View>
         {/* Progress bar */}
         { renderProgressBar() }
 
