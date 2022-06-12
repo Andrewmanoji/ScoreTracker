@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, StatusBar , Image, TouchableOpaci
 import { COLORS, SIZES} from './constants';
 import data from './QuizData';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import RNSpeedometer from "react-native-speedometer";
 
 const Quiz = (props) => {
 
@@ -182,7 +182,7 @@ const Quiz = (props) => {
          backgroundColor: COLORS.background,
          position: 'relative'
        }}>
-        
+        <RNSpeedometer></RNSpeedometer>
         {/* Progress bar */}
         { renderProgressBar() }
 
