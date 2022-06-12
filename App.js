@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Quiz from "./Quiz";
 import Home from "./Home";
+import Score from "./Score"
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,8 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Quiz" component={Quiz} />
+        <Stack.Screen name="Score" component={Score} />
+
 
       </Stack.Navigator>
     </NavigationContainer>

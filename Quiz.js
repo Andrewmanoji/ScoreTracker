@@ -1,63 +1,91 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, StatusBar , Image, TouchableOpacity, Modal, Animated,TextInput} from "react-native";
-import { COLORS, SIZES} from './constants';
-import data from './QuizData';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import RNSpeedometer from "react-native-speedometer";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Image,
+  TouchableOpacity,
+  Modal,
+  Animated,
+  TextInput,
+} from "react-native";
+import { COLORS, SIZES } from "./constants";
+import data from "./QuizData";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Score from "./Score";
 
-const Quiz = (props) => {
-
+// const Quiz = (props,{navigation}) => {
+function Quiz({ navigation }) {
   const allQuestions = data;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
-  const [correctOption, setCorrectOption] = useState(null); 
+  const [correctOption, setCorrectOption] = useState(null);
   const [isOptionDisabled, setIsOptionDisabled] = useState(false);
   const [score, setScore] = useState(0);
-  const [showNextButton, setShowNextButton] = useState(false); 
+  const [showNextButton, setShowNextButton] = useState(false);
   const [showScoreModal, setShowScoreModal] = useState(false);
 
-  const renderQuestion = () =>{
-        return(
-          <View style={{
-            marginVertical: 20,
-          }}>
-          {/* Question counter */}
-          <View style={{            
-            flexDirection: 'row',
-            alignItems: 'flex-end'
-          }}>
-            <Text style={{color: COLORS.white, fontSize: 20, opacity: 0.6, marginRight: 2}}> {currentQuestionIndex +1 }  </Text> 
-            
-            <Text style={{color: COLORS.white, fontSize: 18, opacity: 0.6}}>/ {allQuestions.length}</Text>
-          </View>
-
-          {/* Questions */}
-            <Text style={{
+  const renderQuestion = () => {
+    return (
+      <View
+        style={{
+          marginVertical: 20,
+        }}
+      >
+        {/* Question counter */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "flex-end",
+          }}
+        >
+          <Text
+            style={{
               color: COLORS.white,
-              fontSize: 30
-            }}>
-              {allQuestions[currentQuestionIndex]?.question}
-            </Text>
+              fontSize: 20,
+              opacity: 0.6,
+              marginRight: 2,
+            }}
+          >
+            {" "}
+            {currentQuestionIndex + 1}{" "}
+          </Text>
+
+          <Text style={{ color: COLORS.white, fontSize: 18, opacity: 0.6 }}>
+            / {allQuestions.length}
+          </Text>
         </View>
-        )
-  }
-  
+
+        {/* Questions */}
+        <Text
+          style={{
+            color: COLORS.white,
+            fontSize: 30,
+          }}
+        >
+          {allQuestions[currentQuestionIndex]?.question}
+        </Text>
+      </View>
+    );
+  };
+
   const validateAnswer = (selectedOption) => {
-    let correct_option = allQuestions[currentQuestionIndex]['correct_option']; //get correct answer/option from data
+    let correct_option = allQuestions[currentQuestionIndex]["correct_option"]; //get correct answer/option from data
     setCurrentOptionSelected(selectedOption);
     setCorrectOption(correct_option);
-    if(selectedOption == correct_option){
+    if (selectedOption == correct_option) {
       //Set Score
-        setScore(score+1)
+      setScore(score + 1);
     }
-      //Show Next Button
-      setShowNextButton(true);
-  }
+    //Show Next Button
+    setShowNextButton(true);
+  };
   const handleNext = () => {
-    if(currentQuestionIndex == allQuestions.length - 1){
+    if (currentQuestionIndex == allQuestions.length - 1) {
       setShowScoreModal(true);
-
-    }else{
+    } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setCurrentOptionSelected(null);
       setCorrectOption(null);
@@ -65,14 +93,15 @@ const Quiz = (props) => {
       setShowNextButton(false);
     }
     Animated.timing(progress, {
-      toValue: currentQuestionIndex +1,
+      toValue: currentQuestionIndex + 1,
       duration: 1000,
-      useNativeDriver: false
+      useNativeDriver: false,
     }).start();
-  }
+  };
   const restartQuiz = () => {
+    navigation.navigate("Score",score)
     setShowScoreModal(false);
-    
+
     setCurrentQuestionIndex(0);
     setScore(0);
     setCurrentOptionSelected(null);
@@ -82,265 +111,276 @@ const Quiz = (props) => {
     Animated.timing(progress, {
       toValue: 0,
       duration: 1000,
-      useNativeDriver: false
+      useNativeDriver: false,
     }).start();
+  };
 
-  }
-
-  const renderOptions = () =>{
-    return(
-      <View style={{
-        marginVertical: 10
-      }}>
-        {
-          allQuestions[currentQuestionIndex]?.options.map(option => (
-            <TouchableOpacity
+  const renderOptions = () => {
+    return (
+      <View
+        style={{
+          marginVertical: 10,
+        }}
+      >
+        {allQuestions[currentQuestionIndex]?.options.map((option) => (
+          <TouchableOpacity
             key={option}
             onPress={() => validateAnswer(option)}
-            disabled = {isOptionDisabled}
-            style= {[styles.optionstyle, 
-              {borderColor: option==correctOption 
-                ? COLORS.success 
-                :option == currentOptionSelected 
-                ? COLORS.error
-                : COLORS.secondary + '40',
-              backgroundColor: option==correctOption 
-              ? COLORS.success + '20' 
-              :option == currentOptionSelected 
-              ? COLORS.error + '20'
-              : COLORS.secondary + '20',} 
-            ]}>
-              <Text style={{fontSize: 20, color:COLORS.white}}>{option}</Text>
+            disabled={isOptionDisabled}
+            style={[
+              styles.optionstyle,
+              {
+                borderColor:
+                  option == correctOption
+                    ? COLORS.success
+                    : option == currentOptionSelected
+                    ? COLORS.error
+                    : COLORS.secondary + "40",
+                backgroundColor:
+                  option == correctOption
+                    ? COLORS.success + "20"
+                    : option == currentOptionSelected
+                    ? COLORS.error + "20"
+                    : COLORS.secondary + "20",
+              },
+            ]}
+          >
+            <Text style={{ fontSize: 20, color: COLORS.white }}>{option}</Text>
 
             {/* show right or wrong icon */}
-            {
-              option == correctOption ? (
-                <View style={styles.tickstyle}>
-                  <MaterialCommunityIcons name="check"
-                    style={{color:COLORS.white, fontSize: 20}}/>
-                </View>
-              ): option == currentOptionSelected ? (
-                <View style={styles.crossstyle}>
-                  <MaterialCommunityIcons name="close"
-                    style={{color:COLORS.white, fontSize: 20 }} />
-                </View>
-              ): null
-            }
-
-            </TouchableOpacity>
-          ))
-        }
+            {option == correctOption ? (
+              <View style={styles.tickstyle}>
+                <MaterialCommunityIcons
+                  name="check"
+                  style={{ color: COLORS.white, fontSize: 20 }}
+                />
+              </View>
+            ) : option == currentOptionSelected ? (
+              <View style={styles.crossstyle}>
+                <MaterialCommunityIcons
+                  name="close"
+                  style={{ color: COLORS.white, fontSize: 20 }}
+                />
+              </View>
+            ) : null}
+          </TouchableOpacity>
+        ))}
       </View>
-    )
-  }
+    );
+  };
 
   const renderNextButton = () => {
-    if(showNextButton){
-    return(
-      <TouchableOpacity
-        onPress={handleNext} 
-        style={{marginTop: 20, width:'100%', backgroundColor: COLORS.accent, padding: 20, borderRadius: 5 }}>
-        <Text style= {{fontSize: 20, color: COLORS.white, textAlign:'center'}}>Next</Text>
-      </TouchableOpacity>
-    )
-  }
-  }
+    if (showNextButton) {
+      return (
+        <TouchableOpacity
+          onPress={handleNext}
+          style={{
+            marginTop: 20,
+            width: "100%",
+            backgroundColor: COLORS.accent,
+            padding: 20,
+            borderRadius: 5,
+          }}
+        >
+          <Text
+            style={{ fontSize: 20, color: COLORS.white, textAlign: "center" }}
+          >
+            Next
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+  };
 
   const [progress, setProgress] = useState(new Animated.Value(0));
   const progressAnim = progress.interpolate({
-      inputRange: [0, allQuestions.length],
-      outputRange: ['0%', '100%']
-  })
+    inputRange: [0, allQuestions.length],
+    outputRange: ["0%", "100%"],
+  });
   const renderProgressBar = () => {
-    return(
-      <View style={{
-        width: '100%',
-        height: 20,
-        borderRadius: 20,
-        backgroundColor: '#00000020',
-      }}>
-        <Animated.View style={[{
-            height: 20,
-            borderRadius: 20,
-            backgroundColor: COLORS.accent
-        },{
-          width : progressAnim
-        }        
-        ]}>
-        </Animated.View>
-      </View>
-    )
-  }
-  const [meterValue, setMeterValue] = useState(0);
-
-  return (
-      <SafeAreaView style={{flex:1}}>
-       <StatusBar barStyle="light-content" backgroundColor={COLORS.primary}/>
-       <View style= {{
-         flex: 1,
-         paddingVertical: 40, 
-         paddingHorizontal: 16,
-         backgroundColor: COLORS.background,
-         position: 'relative'
-       }}>
-        <RNSpeedometer
-          // value={meterValue}
-          value={score}
-
-          //value for Speedometer
-          size={50}
-          //Size of Speedometer
-          minValue={0}
-          //Min value for Speedometer
-          maxValue={10}
-          //Max value for Speedometer
-          allowedDecimals={0}
-          //Decimals value allowed or not
-          labels={[
+    return (
+      <View
+        style={{
+          width: "100%",
+          height: 20,
+          borderRadius: 20,
+          backgroundColor: "#00000020",
+        }}
+      >
+        <Animated.View
+          style={[
             {
-              name: 'Low Risk',
-              labelColor: '#ff2900',
-              activeBarColor: '#ff2900',
+              height: 20,
+              borderRadius: 20,
+              backgroundColor: COLORS.accent,
             },
             {
-              name: 'Medium Risk',
-              labelColor: '#f4ab44',
-              activeBarColor: '#f4ab44',
-            },
-            {
-              name: 'High Risk',
-              labelColor: '#00ff6b',
-              activeBarColor: '#00ff6b',
+              width: progressAnim,
             },
           ]}
-          //Labels for the different steps of Speedometer
-        />
-        <View style={{marginTop: 70, padding: 20}}>
-          {/* <Text style={{fontSize: 20}}>
-            Enter the value for the speedometer graph{' '}
-            between 0 to 100
-          </Text> */}
-          <TextInput
-            placeholder="Enter Speedometer Value"
-            style={styles.textInput}
-            onChangeText={(value) => setMeterValue(value)}
-          />
-        </View>
+        ></Animated.View>
+      </View>
+    );
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
+      <View
+        style={{
+          flex: 1,
+          paddingVertical: 40,
+          paddingHorizontal: 16,
+          backgroundColor: COLORS.background,
+          position: "relative",
+        }}
+      >
+        <View style={{ marginTop: 70, padding: 20 }}></View>
         {/* Progress bar */}
-        { renderProgressBar() }
+        {renderProgressBar()}
 
         {/* Questions*/}
         {renderQuestion()}
 
         {/* Options*/}
         {renderOptions()}
-        
+
         {/* Next Button*/}
         {renderNextButton()}
 
         {/* Score Modal */}
         <Modal
-          animationType = "slide"
-          transparent = {true}
-          visible = {showScoreModal}
+          animationType="slide"
+          transparent={true}
+          visible={showScoreModal}
         >
-          <View style={{
-            flex: 1,
-            backgroundColor: COLORS.primary,
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: COLORS.primary,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <View style={styles.scoreModalstyle}>
-              <Text style={{fontSize: 30, fontWeight: 'bold'}}> {score > (allQuestions.length /2) ? "Congratulations!!" : "Ooopps!" } </Text>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                {" "}
+                {score > allQuestions.length / 2
+                  ? "Congratulations!!"
+                  : "Ooopps!"}{" "}
+              </Text>
+
+              <View style={styles.scoreStyle}>
+                <Text
+                  style={{
+                    fontSize: 30,
+                    color:
+                      score > allQuestions.length / 2
+                        ? COLORS.success
+                        : COLORS.error,
+                  }}
+                >
+                  {" "}
+                  {score}
+                </Text>
+                <Text style={{ fontSize: 20, color: COLORS.black }}>
+                  {" "}
+                  / {allQuestions.length}
+                </Text>
+              </View>
+              {/* Try Again button */}
+              <TouchableOpacity
+                onPress={restartQuiz}
+                style={styles.retrybutton}
+              >
+                <Text style={styles.retryText}>View Score</Text>
+              </TouchableOpacity>
+              {/* <View>
+                  <TouchableOpacity
+                onPress={navigation.navigate("Score")}
+                style={styles.retrybutton}
+              >
+                <Text style={styles.retryText}>View score</Text>
+              </TouchableOpacity>
+              </View> */}
             
-            <View style={styles.scoreStyle}>
-              <Text style= {{fontSize: 30, color: score > (allQuestions.length/2) ? COLORS.success : COLORS.error}}> {score}</Text>
-              <Text style= {{fontSize: 20, color: COLORS.black}}> / {allQuestions.length}</Text>
-            </View>
-            {/* Try Again button */}
-            <TouchableOpacity 
-              onPress={restartQuiz}
-              style={styles.retrybutton}>
-              <Text style={styles.retryText}>Retry Again</Text>
-            </TouchableOpacity>
             </View>
           </View>
         </Modal>
-        
+
         {/* Background Image*/}
         <Image
-        // source={require("../assets/images/DottedBG.png")}
-        style={styles.image}
-        resizeMode="contain"
+          // source={require("../assets/images/DottedBG.png")}
+          style={styles.image}
+          resizeMode="contain"
         />
-       </View>
-      </SafeAreaView>
-  )
-};
+      </View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
   image: {
     width: SIZES.width,
     height: 130,
     zIndex: -1,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    opacity: 0.5
+    opacity: 0.5,
   },
   optionstyle: {
     borderWidth: 3,
-   
-    height: 60, borderRadius: 20,
-    flexDirection: 'row',
-    alignItems: 'center', justifyContent: 'space-between',
+
+    height: 60,
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
-    marginVertical: 10
+    marginVertical: 10,
   },
   tickstyle: {
     width: 30,
     height: 30,
-    borderRadius: 30/2,
+    borderRadius: 30 / 2,
     backgroundColor: COLORS.success,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   crossstyle: {
     width: 30,
     height: 30,
-    borderRadius: 30/2,
+    borderRadius: 30 / 2,
     backgroundColor: COLORS.error,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   scoreModalstyle: {
     backgroundColor: COLORS.white,
-    width: '90%',
+    width: "90%",
     borderRadius: 20,
     padding: 20,
-    alignItems: 'center'
+    alignItems: "center",
   },
   scoreStyle: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginVertical: 20
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginVertical: 20,
   },
-  retrybutton:{
+  retrybutton: {
     backgroundColor: COLORS.accent,
     padding: 20,
-    width:'100%',
-    borderRadius: 20 
+    width: "100%",
+    borderRadius: 20,
   },
   retryText: {
-    textAlign: 'center',
+    textAlign: "center",
     color: COLORS.white,
-    fontSize: 20
-  }
-
-
-
+    fontSize: 20,
+  },
 });
 
 export default Quiz;
