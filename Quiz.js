@@ -308,12 +308,7 @@ function Quiz({ navigation }) {
           </View>
         </Modal>
 
-        {/* Background Image*/}
-        <Image
-          // source={require("../assets/images/DottedBG.png")}
-          style={styles.image}
-          resizeMode="contain"
-        />
+      
       </View>
     </SafeAreaView>
   );

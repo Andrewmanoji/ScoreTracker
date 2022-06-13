@@ -5,10 +5,9 @@ import RNSpeedometer from "react-native-speedometer";
 
 const Score = ({ navigation, route }) => {
   const final = route.params;
-  const [Score, setScore] = useState(0);
 
   return (
-    <View>
+    <View styles={styles.speed}>
       <RNSpeedometer
         // value={meterValue}
         value={final}
@@ -23,17 +22,17 @@ const Score = ({ navigation, route }) => {
         //Decimals value allowed or not
         labels={[
           {
-            name: "Low Risk",
+            name: "Poor",
             labelColor: "#ff2900",
             activeBarColor: "#ff2900",
           },
           {
-            name: "Medium Risk",
+            name: "Good",
             labelColor: "#f4ab44",
             activeBarColor: "#f4ab44",
           },
           {
-            name: "High Risk",
+            name: "Very good",
             labelColor: "#00ff6b",
             activeBarColor: "#00ff6b",
           },
@@ -44,5 +43,9 @@ const Score = ({ navigation, route }) => {
   );
 };
 
-const style = StyleSheet.create();
+const styles = StyleSheet.create({
+  speed:{
+
+}
+})
 export default Score;
