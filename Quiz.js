@@ -263,15 +263,15 @@ function Quiz({ navigation }) {
             }}
           >
             <View style={styles.scoreModalstyle}>
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+              {/* <Text style={{ fontSize: 30, fontWeight: "bold" }}>
                 {" "}
                 {score > allQuestions.length / 2
                   ? "Congratulations!!"
                   : "Ooopps!"}{" "}
-              </Text>
+              </Text> */}
 
-              <View style={styles.scoreStyle}>
-                <Text
+              {/* <View style={styles.scoreStyle}> */}
+                {/* <Text
                   style={{
                     fontSize: 30,
                     color:
@@ -282,12 +282,12 @@ function Quiz({ navigation }) {
                 >
                   {" "}
                   {score}
-                </Text>
-                <Text style={{ fontSize: 20, color: COLORS.black }}>
+                </Text> */}
+                {/* <Text style={{ fontSize: 20, color: COLORS.black }}>
                   {" "}
                   / {allQuestions.length}
-                </Text>
-              </View>
+                </Text> */}
+              {/* </View> */}
               {/* Try Again button */}
               <TouchableOpacity
                 onPress={restartQuiz}
