@@ -16,7 +16,7 @@ const Score = ({ navigation, route }) => {
         //Size of Speedometer
         minValue={0}
         //Min value for Speedometer
-        maxValue={10}
+        maxValue={5}
         //Max value for Speedometer
         allowedDecimals={0}
         //Decimals value allowed or not

@@ -130,15 +130,15 @@ function Quiz({ navigation }) {
               {
                 borderColor:
                   option == correctOption
-                    ? COLORS
+                    ? COLORS.success
                     : option == currentOptionSelected
-                    ? COLORS.white
+                    ? COLORS.error
                     : COLORS.background + "40",
                 backgroundColor:
                   option == correctOption
-                    ? COLORS.white + "20"
+                    ? COLORS.success + "20"
                     : option == currentOptionSelected
-                    ? COLORS.white+ "20"
+                    ? COLORS.error+ "20"
                     : COLORS.background + "20",
               },
             ]}
@@ -146,7 +146,7 @@ function Quiz({ navigation }) {
             <Text style={{ fontSize: 20, color: COLORS.white }}>{option}</Text>
 
             {/* show right or wrong icon */}
-            {/* {option == correctOption ? (
+            {option == correctOption ? (
               <View style={styles.tickstyle}>
                 <MaterialCommunityIcons
                   name="check"
@@ -160,7 +160,7 @@ function Quiz({ navigation }) {
                   style={{ color: COLORS.white, fontSize: 20 }}
                 />
               </View>
-            ) : null} */}
+            ) : null}
           </TouchableOpacity>
         ))}
       </View>
@@ -317,22 +317,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginVertical: 10,
   },
-  // tickstyle: {
-  //   width: 30,
-  //   height: 30,
-  //   borderRadius: 30 / 2,
-  //   backgroundColor: COLORS.success,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-  // crossstyle: {
-  //   width: 30,
-  //   height: 30,
-  //   borderRadius: 30 / 2,
-  //   backgroundColor: COLORS.error,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
+  tickstyle: {
+    width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
+    backgroundColor: COLORS.success,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  crossstyle: {
+    width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
+    backgroundColor: COLORS.error,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   scoreModalstyle: {
     backgroundColor: COLORS.white,
     width: "90%",
