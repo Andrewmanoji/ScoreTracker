@@ -3,19 +3,24 @@ import React, { createContext } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
 const Home = ({ navigation }) => {
+// const [code,setCode]=useState(null)
+
   return (
     <View style={style.container}>
       <View>
         <Text style={style.text}>Enter Code</Text>
-        <TextInput style={style.textInput}></TextInput>
+        <TextInput style={style.textInput}>0G67</TextInput>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("Quiz");
-        }}
-      >
-        <Text style={style.text}>Open Quiz</Text>
-      </TouchableOpacity>
+
+      <View style={style.quiz}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Quiz");
+          }}
+        >
+          <Text style={style.open}>Open Quiz</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -23,7 +28,7 @@ const Home = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     alignItems: "center",
-    padding:40 ,
+    padding: 40,
     margin: 50,
     backgroundColor: "yellow",
   },
@@ -31,8 +36,17 @@ const style = StyleSheet.create({
     fontSize: 40,
   },
   textInput: {
-    paddingTop:12,
+    fontSize:30,
+    paddingTop: 12,
     backgroundColor: "white",
   },
+  open: {
+    fontSize: 43,
+    backgroundColor: "blue",
+    color: "white",
+  },
+  quiz:{
+    paddingTop:33
+  }
 });
 export default Home;
