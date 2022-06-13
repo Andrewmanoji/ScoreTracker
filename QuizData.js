@@ -10,6 +10,7 @@ export default data = [
     correct_option: "Pigeon",
   },
   {
+<<<<<<< HEAD
     question: "Which one is a Fish?",
     options: ["Dolphine", "Cat", "Pigeon", "Pikachu"],
     correct_option: "Dolphine",
@@ -24,6 +25,22 @@ export default data = [
     options: ["Momo", "Bike", "Kite", "Pikachu"],
     correct_option: "Momo",
   },
+=======
+     question: "Which one is a Fish?",
+     options: ["Dolphine", "Cat", "Pigeon", "Pikachu"],
+     correct_option: "Dolphine",
+   },
+   {
+     question: "Which one is a Vehicle?",
+     options: ["Octopus", "Car", "Pistol", "Pikachu"],
+     correct_option: "Car",
+   },
+  // {
+  //   question: "Which one is a Food?",
+  //   options: ["Momo", "Bike", "Kite", "Pikachu"],
+  //   correct_option: "Momo",
+  // },
+>>>>>>> e633fc3b3c5cb0603179533dbd7cbd39be42e108
   // {
   //   question: "Which one is a Japanese Dish?",
   //   options: ["Donut", "Momo", "Ramen", "Pikachu"],
