@@ -130,9 +130,9 @@ function Quiz({ navigation }) {
               {
                 borderColor:
                   option == correctOption
-                    ? COLORS.background
+                    ? COLORS
                     : option == currentOptionSelected
-                    ? COLORS.background
+                    ? COLORS.white
                     : COLORS.background + "40",
                 backgroundColor:
                   option == correctOption
