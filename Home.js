@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { createContext } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-
+import {COLORS, SIZES} from "./constants"
 const Home = ({ navigation }) => {
 // const [code,setCode]=useState(null)
 
   return (
+  
     <View style={style.container}>
       <View>
         <Text style={style.text}>Enter Code</Text>
@@ -22,6 +23,7 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </View>
+   
   );
 };
 
@@ -36,7 +38,7 @@ const style = StyleSheet.create({
     fontSize: 40,
   },
   textInput: {
-    fontSize:30,
+    fontSize: 30,
     paddingTop: 12,
     backgroundColor: "white",
   },
@@ -45,8 +47,9 @@ const style = StyleSheet.create({
     backgroundColor: "blue",
     color: "white",
   },
-  quiz:{
-    paddingTop:33
-  }
+  quiz: {
+    paddingTop: 33,
+  },
+ 
 });
 export default Home;

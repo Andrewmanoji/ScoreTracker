@@ -289,19 +289,11 @@ function Quiz({ navigation }) {
               {/* Try Again button */}
               <TouchableOpacity
                 onPress={restartQuiz}
-                style={styles.retrybutton}
+                style={styles.scorebutton}
               >
-                <Text style={styles.retryText}>View Score</Text>
+                <Text style={styles.scoreText}>View Score</Text>
               </TouchableOpacity>
-              {/* <View>
-                  <TouchableOpacity
-                onPress={navigation.navigate("Score")}
-                style={styles.retrybutton}
-              >
-                <Text style={styles.retryText}>View score</Text>
-              </TouchableOpacity>
-              </View> */}
-            
+             
             </View>
           </View>
         </Modal>
@@ -313,16 +305,7 @@ function Quiz({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  image: {
-    width: SIZES.width,
-    height: 130,
-    zIndex: -1,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    opacity: 0.5,
-  },
+  
   optionstyle: {
     borderWidth: 3,
 
@@ -363,13 +346,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 20,
   },
-  retrybutton: {
+  scorebutton: {
     backgroundColor: COLORS.accent,
     padding: 20,
     width: "100%",
     borderRadius: 20,
   },
-  retryText: {
+  scoreText: {
     textAlign: "center",
     color: COLORS.white,
     fontSize: 20,
