@@ -8,10 +8,10 @@ const Home = ({ navigation }) => {
   return (
   
     <View style={style.container}>
-      <View style={style.quiz}>
+      {/* <View style={style.quiz}>
         <Text style={style.text}>Enter Code</Text>
         <TextInput style={style.textInput}>0G67</TextInput>
-      </View>
+      </View> */}
 
       <View style={style.quiz}>
         <TouchableOpacity
@@ -32,14 +32,16 @@ const style = StyleSheet.create({
     alignItems: "center",
     padding: 40,
     margin: 50,
-    backgroundColor: "yellow",
+    flex:1,
+    justifyContent: "center",
+    // backgroundColor: "yellow",
   },
-  text: {
-    fontSize: 40,
-    backgroundColor: "blue",
-    color: "white",
-    borderRadius: 7,
-  },
+  // text: {
+  //   fontSize: 40,
+  //   backgroundColor: "blue",
+  //   color: "white",
+  //   borderRadius: 7,
+  // },
   textInput: {
     fontSize: 30,
     padding: 8,
@@ -48,6 +50,7 @@ const style = StyleSheet.create({
   },
   open: {
     fontSize: 43,
+    padding:20,
     backgroundColor: "blue",
     color: "white",
     borderRadius: 7,
