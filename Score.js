@@ -22,17 +22,17 @@ const Score = ({ navigation, route }) => {
         //Decimals value allowed or not
         labels={[
           {
-            name: "Poor",
+            name: "Low",
             labelColor: "#ff2900",
             activeBarColor: "#ff2900",
           },
           {
-            name: "Good",
+            name: "Average",
             labelColor: "#f4ab44",
             activeBarColor: "#f4ab44",
           },
           {
-            name: "Very good",
+            name: "Good",
             labelColor: "#00ff6b",
             activeBarColor: "#00ff6b",
           },

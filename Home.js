@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
   return (
   
     <View style={style.container}>
-      <View>
+      <View style={style.quiz}>
         <Text style={style.text}>Enter Code</Text>
         <TextInput style={style.textInput}>0G67</TextInput>
       </View>
@@ -36,20 +36,25 @@ const style = StyleSheet.create({
   },
   text: {
     fontSize: 40,
+    backgroundColor: "blue",
+    color: "white",
+    borderRadius: 7,
   },
   textInput: {
     fontSize: 30,
-    paddingTop: 12,
+    padding: 8,
     backgroundColor: "white",
+    borderRadius: 7,
   },
   open: {
     fontSize: 43,
     backgroundColor: "blue",
     color: "white",
+    borderRadius: 7,
   },
   quiz: {
     paddingTop: 33,
+    paddingBottom: 25,
   },
- 
 });
 export default Home;

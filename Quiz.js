@@ -96,7 +96,7 @@ function Quiz({ navigation }) {
       useNativeDriver: false,
     }).start();
   };
-  const restartQuiz = () => {
+  const viewScore = () => {
     navigation.navigate("Score",score)
     setShowScoreModal(false);
 
@@ -288,7 +288,7 @@ function Quiz({ navigation }) {
               {/* </View> */}
               {/* Try Again button */}
               <TouchableOpacity
-                onPress={restartQuiz}
+                onPress={viewScore}
                 style={styles.scorebutton}
               >
                 <Text style={styles.scoreText}>View Score</Text>
