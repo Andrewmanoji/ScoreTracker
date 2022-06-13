@@ -139,7 +139,7 @@ function Quiz({ navigation }) {
                     ? COLORS.success + "20"
                     : option == currentOptionSelected
                     ? COLORS.error+ "20"
-                    : COLORS.background + "20",
+                    : COLORS.accent + "20",
               },
             ]}
           >
