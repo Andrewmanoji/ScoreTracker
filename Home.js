@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { createContext } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
 const Home = ({ navigation }) => {
   return (
     <View style={style.container}>
+      <View>
+        <Text style={style.text}>Enter Code</Text>
+        <TextInput style={style.textInput}></TextInput>
+      </View>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("Quiz");
@@ -19,12 +23,16 @@ const Home = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     alignItems: "center",
-  // backgroundColor:"#252C4A"
-
+    padding:40 ,
+    margin: 50,
+    backgroundColor: "yellow",
   },
   text: {
     fontSize: 40,
-    paddingTop:300,
+  },
+  textInput: {
+    paddingTop:12,
+    backgroundColor: "white",
   },
 });
 export default Home;

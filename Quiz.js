@@ -14,9 +14,7 @@ import {
 import { COLORS, SIZES } from "./constants";
 import data from "./QuizData";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Score from "./Score";
 
-// const Quiz = (props,{navigation}) => {
 function Quiz({ navigation }) {
   const allQuestions = data;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -235,7 +233,7 @@ function Quiz({ navigation }) {
           position: "relative",
         }}
       >
-        <View style={{ marginTop: 70, padding: 20 }}></View>
+        <View style={{ marginTop: 0, padding: 20 }}></View>
         {/* Progress bar */}
         {renderProgressBar()}
 
